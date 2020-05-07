@@ -19,6 +19,7 @@ export interface BaseAction {
 
 export interface Action<Payload> extends BaseAction {
     payload: Payload;
+    // 是否出错，出错的话，payload 就是错误信息
     error?: boolean;
 }
 
@@ -80,6 +81,7 @@ export type ActionFunction4<T1, T2, T3, T4, R> = (t1: T1, t2: T2, t3: T3, t4: T4
 export type ActionFunctionAny<R> = (...args: any[]) => R;
 
 // https://github.com/redux-utilities/redux-actions/blob/v2.3.0/src/createAction.js#L6
+// createAction 入参是一个 `action` 类型，返回值是一个函数，这个函数的返回值是 Action 对象
 export function createAction(
     actionType: string
 ): ActionFunctionAny<Action<any>>;
